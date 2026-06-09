@@ -15,6 +15,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.creativetab.CreativeTabs;
 
 public class ModWeapons {
 
@@ -26,12 +27,12 @@ public class ModWeapons {
     public static class ItemBullet extends Item {
 
         public ItemBullet() {
-
-    setUnlocalizedName("bullet");
-    setRegistryName("bullet");
-    setCreativeTab(net.minecraft.creativetab.CreativeTabs.MATERIALS);
-    setMaxStackSize(64);
-}
+            setUnlocalizedName("bullet");
+            setRegistryName("rivalsmod", "bullet");
+            setCreativeTab(CreativeTabs.MATERIALS);
+            setMaxStackSize(64);
+        }
+    }
 
     // =========================
     // ASSAULT RIFLE
@@ -43,13 +44,12 @@ public class ModWeapons {
         private static final int MAG_SIZE = 30;
 
         public ItemAssaultRifle() {
-
-    setUnlocalizedName("assault_rifle");
-    setRegistryName("assault_rifle");
-    setCreativeTab(net.minecraft.creativetab.CreativeTabs.COMBAT);
-    setMaxStackSize(1);
-    setMaxDamage(200);
-}
+            setUnlocalizedName("assault_rifle");
+            setRegistryName("rivalsmod", "assault_rifle");
+            setCreativeTab(CreativeTabs.COMBAT);
+            setMaxStackSize(1);
+            setMaxDamage(200);
+        }
 
         private int getAmmo(ItemStack stack) {
             if (!stack.hasTagCompound()) {
@@ -67,31 +67,23 @@ public class ModWeapons {
         }
 
         private boolean consumeBullet(EntityPlayer player) {
-
             for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
-
                 ItemStack stack = player.inventory.getStackInSlot(i);
 
                 if (!stack.isEmpty() && stack.getItem() == BULLET) {
-
                     stack.shrink(1);
 
                     if (stack.isEmpty()) {
                         player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
                     }
-
                     return true;
                 }
             }
-
             return false;
         }
 
         @Override
-        public ActionResult<ItemStack> onItemRightClick(
-                World world,
-                EntityPlayer player,
-                EnumHand hand) {
+        public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 
             ItemStack stack = player.getHeldItem(hand);
             int ammo = getAmmo(stack);
@@ -102,49 +94,29 @@ public class ModWeapons {
 
                     Vec3d look = player.getLookVec();
 
-                    EntityTippedArrow bullet =
-                            new EntityTippedArrow(world, player);
-
-                    bullet.shoot(
-                            look.x,
-                            look.y,
-                            look.z,
-                            3.0F,
-                            0.5F);
-
+                    EntityTippedArrow bullet = new EntityTippedArrow(world, player);
+                    bullet.shoot(look.x, look.y, look.z, 3.0F, 0.5F);
                     bullet.setDamage(12.0D);
 
                     world.spawnEntity(bullet);
 
-                    world.playSound(
-                            null,
-                            player.posX,
-                            player.posY,
-                            player.posZ,
+                    world.playSound(null,
+                            player.posX, player.posY, player.posZ,
                             SoundEvents.ENTITY_GENERIC_EXPLODE,
                             SoundCategory.PLAYERS,
-                            0.5F,
-                            2.0F);
+                            0.5F, 2.0F);
 
                     setAmmo(stack, ammo - 1);
-
                     stack.damageItem(1, player);
 
-                    player.getCooldownTracker()
-                            .setCooldown(this, 3);
+                    player.getCooldownTracker().setCooldown(this, 3);
 
                 } else {
-
-                    player.sendMessage(
-                            new TextComponentString(
-                                    "Out of ammo!"));
-
+                    player.sendMessage(new TextComponentString("Out of ammo!"));
                 }
             }
 
-            return new ActionResult<>(
-                    EnumActionResult.SUCCESS,
-                    stack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
     }
 
@@ -158,19 +130,15 @@ public class ModWeapons {
         private static final float BLAST_RADIUS = 3.0F;
 
         public ItemExogun() {
-
-    setUnlocalizedName("exogun");
-    setRegistryName("exogun");
-    setCreativeTab(net.minecraft.creativetab.CreativeTabs.COMBAT);
-    setMaxStackSize(1);
-    setMaxDamage(150);
-}
+            setUnlocalizedName("exogun");
+            setRegistryName("rivalsmod", "exogun");
+            setCreativeTab(CreativeTabs.COMBAT);
+            setMaxStackSize(1);
+            setMaxDamage(150);
+        }
 
         @Override
-        public ActionResult<ItemStack> onItemRightClick(
-                World world,
-                EntityPlayer player,
-                EnumHand hand) {
+        public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 
             ItemStack stack = player.getHeldItem(hand);
 
@@ -182,34 +150,19 @@ public class ModWeapons {
                 double y = player.posY + player.getEyeHeight() + look.y * 3;
                 double z = player.posZ + look.z * 3;
 
-                world.newExplosion(
-                        player,
-                        x,
-                        y,
-                        z,
-                        BLAST_RADIUS,
-                        false,
-                        false);
+                world.newExplosion(player, x, y, z, BLAST_RADIUS, false, false);
 
-                world.playSound(
-                        null,
-                        player.posX,
-                        player.posY,
-                        player.posZ,
+                world.playSound(null,
+                        player.posX, player.posY, player.posZ,
                         SoundEvents.BLOCK_ANVIL_PLACE,
                         SoundCategory.PLAYERS,
-                        0.6F,
-                        1.5F);
+                        0.6F, 1.5F);
 
                 stack.damageItem(1, player);
-
-                player.getCooldownTracker()
-                        .setCooldown(this, 15);
+                player.getCooldownTracker().setCooldown(this, 15);
             }
 
-            return new ActionResult<>(
-                    EnumActionResult.SUCCESS,
-                    stack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
     }
 
@@ -221,60 +174,41 @@ public class ModWeapons {
     public static class ItemRivalsKatana extends ItemSword {
 
         public ItemRivalsKatana() {
+            super(ToolMaterial.DIAMOND);
 
-    super(ToolMaterial.DIAMOND);
-
-    setUnlocalizedName("rivals_katana");
-    setRegistryName("rivals_katana");
-    setCreativeTab(net.minecraft.creativetab.CreativeTabs.COMBAT);
-    setMaxDamage(500);
-}
-
-        @Override
-        public ActionResult<ItemStack> onItemRightClick(
-                World world,
-                EntityPlayer player,
-                EnumHand hand) {
-
-            if (!world.isRemote) {
-
-                player.sendMessage(
-                        new TextComponentString(
-                                "Katana Parry Ready!"));
-            }
-
-            player.getCooldownTracker()
-                    .setCooldown(this, 80);
-
-            return new ActionResult<>(
-                    EnumActionResult.SUCCESS,
-                    player.getHeldItem(hand));
+            setUnlocalizedName("rivals_katana");
+            setRegistryName("rivalsmod", "rivals_katana");
+            setCreativeTab(CreativeTabs.COMBAT);
+            setMaxDamage(500);
         }
 
         @Override
-        public boolean hitEntity(
-                ItemStack stack,
-                EntityLivingBase target,
-                EntityLivingBase attacker) {
+        public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+
+            if (!world.isRemote) {
+                player.sendMessage(new TextComponentString("Katana Parry Ready!"));
+            }
+
+            player.getCooldownTracker().setCooldown(this, 80);
+
+            return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+        }
+
+        @Override
+        public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 
             if (attacker instanceof EntityPlayer) {
-
                 target.attackEntityFrom(
-                        net.minecraft.util.DamageSource.causePlayerDamage(
-                                (EntityPlayer) attacker),
+                        net.minecraft.util.DamageSource.causePlayerDamage((EntityPlayer) attacker),
                         45.0F);
 
                 Vec3d look = attacker.getLookVec();
 
-                target.addVelocity(
-                        look.x * 1.5,
-                        0.4,
-                        look.z * 1.5);
+                target.addVelocity(look.x * 1.5, 0.4, look.z * 1.5);
             }
 
             stack.damageItem(1, attacker);
-
             return true;
         }
     }
-    }
+}
