@@ -1,0 +1,50 @@
+ROBLOX RIVALS MOD
+PATCH NOTES V3
+
+Version: 1.0
+Minecraft: 1.12.2
+
+NEW WEAPONS
+- Added Assault Rifle
+- Added Exogun
+- Added Rivals Katana
+
+ASSAULT RIFLE
+- Added ammo system
+- Added magazine tracking
+- Added cooldown balancing
+- Added durability support
+
+EXOGUN
+- Upgraded to energy blast weapon
+- Added area-of-effect damage
+- Improved sound effects
+- Added weapon durability
+
+RIVALS KATANA
+- Added high-damage melee attacks
+- Added knockback effect
+- Added parry/deflect support
+- Added cooldown system
+
+GENERAL
+- Added Bullet ammunition item
+- Added item registration support
+- Added model registration support
+- Improved Forge 1.12.2 compatibility
+- Fixed startup registration issues
+- Improved code organization
+- Improved overall stability
+
+KNOWN ISSUES
+- Katana deflect system requires KatanaFixes event registration.
+- Future versions may replace arrow-based bullets with custom projectiles.
+
+PLANNED FEATURES
+- Sniper Rifle
+- Shotgun
+- Rocket Launcher
+- Real reload keybind
+- Ammo HUD
+- Advanced projectile system
+- Additional Roblox Rivals weapons
