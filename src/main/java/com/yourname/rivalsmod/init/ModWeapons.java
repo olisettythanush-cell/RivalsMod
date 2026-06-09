@@ -26,11 +26,12 @@ public class ModWeapons {
     public static class ItemBullet extends Item {
 
         public ItemBullet() {
-            setUnlocalizedName("bullet");
-            setRegistryName("bullet");
-            setMaxStackSize(64);
-        }
-    }
+
+    setUnlocalizedName("bullet");
+    setRegistryName("bullet");
+    setCreativeTab(net.minecraft.creativetab.CreativeTabs.MATERIALS);
+    setMaxStackSize(64);
+}
 
     // =========================
     // ASSAULT RIFLE
@@ -42,11 +43,13 @@ public class ModWeapons {
         private static final int MAG_SIZE = 30;
 
         public ItemAssaultRifle() {
-            setUnlocalizedName("assault_rifle");
-            setRegistryName("assault_rifle");
-            setMaxStackSize(1);
-            setMaxDamage(200);
-        }
+
+    setUnlocalizedName("assault_rifle");
+    setRegistryName("assault_rifle");
+    setCreativeTab(net.minecraft.creativetab.CreativeTabs.COMBAT);
+    setMaxStackSize(1);
+    setMaxDamage(200);
+}
 
         private int getAmmo(ItemStack stack) {
             if (!stack.hasTagCompound()) {
@@ -155,11 +158,13 @@ public class ModWeapons {
         private static final float BLAST_RADIUS = 3.0F;
 
         public ItemExogun() {
-            setUnlocalizedName("exogun");
-            setRegistryName("exogun");
-            setMaxStackSize(1);
-            setMaxDamage(150);
-        }
+
+    setUnlocalizedName("exogun");
+    setRegistryName("exogun");
+    setCreativeTab(net.minecraft.creativetab.CreativeTabs.COMBAT);
+    setMaxStackSize(1);
+    setMaxDamage(150);
+}
 
         @Override
         public ActionResult<ItemStack> onItemRightClick(
@@ -217,12 +222,13 @@ public class ModWeapons {
 
         public ItemRivalsKatana() {
 
-            super(ToolMaterial.DIAMOND);
+    super(ToolMaterial.DIAMOND);
 
-            setUnlocalizedName("rivals_katana");
-            setRegistryName("rivals_katana");
-            setMaxDamage(500);
-        }
+    setUnlocalizedName("rivals_katana");
+    setRegistryName("rivals_katana");
+    setCreativeTab(net.minecraft.creativetab.CreativeTabs.COMBAT);
+    setMaxDamage(500);
+}
 
         @Override
         public ActionResult<ItemStack> onItemRightClick(
@@ -271,4 +277,4 @@ public class ModWeapons {
             return true;
         }
     }
-}
+    }
