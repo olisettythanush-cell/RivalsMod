@@ -1,5 +1,6 @@
 package com.yourname.rivalsmod.init;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityTippedArrow;
@@ -15,24 +16,17 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraft.creativetab.CreativeTabs;
 
 public class ModWeapons {
 
     // =========================
-    // BULLET ITEM
+    // BULLET
     // =========================
-    public static final Item BULLET = new ItemBullet();
-
-    public static class ItemBullet extends Item {
-
-        public ItemBullet() {
-            setUnlocalizedName("bullet");
-            setRegistryName("rivalsmod", "bullet");
-            setCreativeTab(CreativeTabs.MATERIALS);
-            setMaxStackSize(64);
-        }
-    }
+    public static final Item BULLET = new Item()
+            .setUnlocalizedName("bullet")
+            .setRegistryName("rivalsmod", "bullet")
+            .setCreativeTab(CreativeTabs.MATERIALS)
+            .setMaxStackSize(64);
 
     // =========================
     // ASSAULT RIFLE
@@ -67,15 +61,19 @@ public class ModWeapons {
         }
 
         private boolean consumeBullet(EntityPlayer player) {
+
             for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+
                 ItemStack stack = player.inventory.getStackInSlot(i);
 
                 if (!stack.isEmpty() && stack.getItem() == BULLET) {
+
                     stack.shrink(1);
 
                     if (stack.isEmpty()) {
                         player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
                     }
+
                     return true;
                 }
             }
@@ -167,7 +165,7 @@ public class ModWeapons {
     }
 
     // =========================
-    // RIVALS KATANA
+    // KATANA
     // =========================
     public static final Item KATANA = new ItemRivalsKatana();
 
@@ -198,6 +196,7 @@ public class ModWeapons {
         public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 
             if (attacker instanceof EntityPlayer) {
+
                 target.attackEntityFrom(
                         net.minecraft.util.DamageSource.causePlayerDamage((EntityPlayer) attacker),
                         45.0F);
@@ -211,4 +210,4 @@ public class ModWeapons {
             return true;
         }
     }
-}
+        }
