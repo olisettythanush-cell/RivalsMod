@@ -20,6 +20,8 @@ import com.yourname.rivalsmod.items.ItemFreezeRay;
 
 public class ModWeapons {
 
+    public static final Item FREEZE_RAY = new ItemFreezeRay();
+
     // =========================
     // BULLET ITEM
     // =========================
@@ -212,7 +214,4 @@ public class ModWeapons {
             return true;
         }
     }
-}
-
-public static final Item FREEZE_RAY = new ItemFreezeRay();
-}
+                }
