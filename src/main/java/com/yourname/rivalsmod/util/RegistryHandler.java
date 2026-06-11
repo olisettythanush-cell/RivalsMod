@@ -21,7 +21,8 @@ public class RegistryHandler {
                 ModWeapons.BULLET,
                 ModWeapons.ASSAULT_RIFLE,
                 ModWeapons.EXOGUN,
-                ModWeapons.KATANA
+                ModWeapons.KATANA,
+                ModWeapons.FREEZE_RAY
         );
     }
 
@@ -33,6 +34,7 @@ public class RegistryHandler {
         registerModel(ModWeapons.ASSAULT_RIFLE);
         registerModel(ModWeapons.EXOGUN);
         registerModel(ModWeapons.KATANA);
+        registerModel(ModWeapons.FREEZE_RAY);
     }
 
     @SideOnly(Side.CLIENT)
